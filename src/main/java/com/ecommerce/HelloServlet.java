@@ -1,4 +1,4 @@
-package com.example.ecommerce;
+package com.ecommerce;
 
 import java.io.*;
 import javax.servlet.http.*;
