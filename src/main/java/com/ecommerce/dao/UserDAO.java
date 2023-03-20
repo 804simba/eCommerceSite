@@ -11,9 +11,12 @@ public class UserDAO {
 
     public UserDAO() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DBConnection.getInstance().getConnection();
         } catch (SQLException e) {
             System.out.println("Database exception: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver Exception: " + e.getMessage());
         }
     }
 

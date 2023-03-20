@@ -6,7 +6,8 @@ import com.ecommerce.entity.User;
 import java.util.List;
 
 public interface ProductService {
-    boolean createProduct(Product product, User user);
+    boolean addProduct(Product product, User user);
+
     Product getProductByID(int id);
     boolean updateProduct(Product product, User user);
     boolean deleteProduct(Product product, User user);
