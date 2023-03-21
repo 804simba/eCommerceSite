@@ -2,12 +2,13 @@
   Created by IntelliJ IDEA.
   User: decagon
   Date: 20/03/2023
-  Time: 21:50
+  Time: 21:02
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>Registration Page</title>
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,8 +16,9 @@
     <meta name="author" content="">
     <link href="assets/images/favicon.png" rel="shortcut icon">
     <title>FitShop - Sneakers, Sportwears, Clothes, & more</title>
+
     <!--====== Google Font ======-->
-    <link href="assets/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
     <link rel="stylesheet" href="assets/css/vendor.css">
@@ -27,7 +29,7 @@
     <!--====== App ======-->
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body>
+<body class="config">
 <div class="preloader is-active">
     <div class="preloader__wrap">
 
@@ -1395,10 +1397,10 @@
                             <ul class="breadcrumb__list">
                                 <li class="has-separator">
 
-                                    <a href="index.html">Home</a></li>
+                                    <a href="/">Home</a></li>
                                 <li class="is-marked">
 
-                                    <a href="signin.html">Signin</a></li>
+                                    <a href="signUp">Signup</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1417,7 +1419,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section__text-wrap">
-                                <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
+                                <h1 class="section__heading u-c-secondary">CREATE AN ACCOUNT</h1>
                             </div>
                         </div>
                     </div>
@@ -1433,58 +1435,80 @@
                         <div class="col-lg-6 col-md-8 u-s-m-b-30">
                             <div class="l-f-o">
                                 <div class="l-f-o__pad-box">
-                                    <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
-
-                                    <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
-                                    <div class="u-s-m-b-15">
-
-                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
-                                    <h1 class="gl-h1">SIGNIN</h1>
-
-                                    <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
+                                    <h1 class="gl-h1">PERSONAL INFORMATION</h1>
                                     <form class="l-f-o__form">
                                         <div class="gl-s-api">
                                             <div class="u-s-m-b-15">
 
                                                 <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
 
-                                                    <span>Signin with Facebook</span></button></div>
-                                            <div class="u-s-m-b-15">
+                                                    <span>Signup with Facebook</span></button></div>
+                                            <div class="u-s-m-b-30">
 
                                                 <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
 
-                                                    <span>Signin with Google</span></button></div>
+                                                    <span>Signup with Google</span></button></div>
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="login-email">E-MAIL *</label>
+                                            <label class="gl-label" for="reg-fname">FIRST NAME *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="login-email" placeholder="Enter E-mail"></div>
+                                            <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="First Name"></div>
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="login-password">PASSWORD *</label>
+                                            <label class="gl-label" for="reg-lname">LAST NAME *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="login-password" placeholder="Enter Password"></div>
+                                            <input class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Last Name"></div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
-                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
+                                                <!--====== Date of Birth Select-Box ======-->
+
+                                                <span class="gl-label">BIRTHDAY</span>
+                                                <div class="gl-dob"><select class="select-box select-box--primary-style">
+                                                    <option selected>Month</option>
+                                                    <option value="male">January</option>
+                                                    <option value="male">February</option>
+                                                    <option value="male">March</option>
+                                                    <option value="male">April</option>
+                                                </select><select class="select-box select-box--primary-style">
+                                                    <option selected>Day</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                </select><select class="select-box select-box--primary-style">
+                                                    <option selected>Year</option>
+                                                    <option value="1991">1991</option>
+                                                    <option value="1992">1992</option>
+                                                    <option value="1993">1993</option>
+                                                    <option value="1994">1994</option>
+                                                </select></div>
+                                                <!--====== End - Date of Birth Select-Box ======-->
+                                            </div>
                                             <div class="u-s-m-b-30">
 
-                                                <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                                <label class="gl-label" for="gender">GENDER</label><select class="select-box select-box--primary-style u-w-100" id="gender">
+                                                <option selected>Select</option>
+                                                <option value="male">Male</option>
+                                                <option value="male">Female</option>
+                                            </select></div>
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <!--====== Check Box ======-->
-                                            <div class="check-box">
+                                            <label class="gl-label" for="reg-email">E-MAIL *</label>
 
-                                                <input type="checkbox" id="remember-me">
-                                                <div class="check-box__state check-box__state--primary">
+                                            <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="Enter E-mail"></div>
+                                        <div class="u-s-m-b-30">
 
-                                                    <label class="check-box__label" for="remember-me">Remember Me</label></div>
-                                            </div>
-                                            <!--====== End - Check Box ======-->
-                                        </div>
+                                            <label class="gl-label" for="reg-password">PASSWORD *</label>
+
+                                            <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Enter Password"></div>
+                                        <div class="u-s-m-b-15">
+
+                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
+
+                                        <a class="gl-link" href="#">Return to Store</a>
                                     </form>
                                 </div>
                             </div>

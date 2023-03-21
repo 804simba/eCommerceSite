@@ -2,13 +2,12 @@
   Created by IntelliJ IDEA.
   User: decagon
   Date: 20/03/2023
-  Time: 21:02
+  Time: 21:50
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registration Page</title>
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +15,8 @@
     <meta name="author" content="">
     <link href="assets/images/favicon.png" rel="shortcut icon">
     <title>FitShop - Sneakers, Sportwears, Clothes, & more</title>
-
     <!--====== Google Font ======-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+    <link href="assets/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
     <link rel="stylesheet" href="assets/css/vendor.css">
@@ -29,7 +27,7 @@
     <!--====== App ======-->
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="config">
+<body>
 <div class="preloader is-active">
     <div class="preloader__wrap">
 
@@ -51,7 +49,7 @@
 
                     <!--====== Main Logo ======-->
 
-                    <a class="main-logo" href="index.html">
+                    <a class="main-logo" href="/">
 
                         <img src="assets/images/logo/logo-1.png" alt=""></a>
                     <!--====== End - Main Logo ======-->
@@ -90,24 +88,24 @@
                                     <ul style="width:120px">
                                         <li>
 
-                                            <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                            <a href="#"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                 <span>Account</span></a></li>
                                         <li>
 
-                                            <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                            <a href="/signUp"><i class="fas fa-user-plus u-s-m-r-6"></i>
 
                                                 <span>Signup</span></a></li>
                                         <li>
 
-                                            <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
+                                            <a href="/signIn"><i class="fas fa-lock u-s-m-r-6"></i>
 
-                                                <span>Signin</span></a></li>
+                                                <span>Sign-in</span></a></li>
                                         <li>
 
-                                            <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                            <a href="/signOut"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
-                                                <span>Signout</span></a></li>
+                                                <span>Sign-out</span></a></li>
                                     </ul>
                                     <!--====== End - Dropdown ======-->
                                 </li>
@@ -223,42 +221,42 @@
                                                         <span class="js-menu-toggle js-toggle-mark"></span></li>
                                                     <li>
 
-                                                        <a href="shop-side-version-2.html"><i class="fas fa-female u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-female u-s-m-r-6"></i>
 
                                                             <span>Women's Clothing</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="shop-side-version-2.html"><i class="fas fa-male u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-male u-s-m-r-6"></i>
 
                                                             <span>Men's Clothing</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-utensils u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-utensils u-s-m-r-6"></i>
 
                                                             <span>Food & Supplies</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-couch u-s-m-r-6"></i>
 
                                                             <span>Furniture & Decor</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-football-ball u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-football-ball u-s-m-r-6"></i>
 
                                                             <span>Sports & Game</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-heartbeat u-s-m-r-6"></i>
+                                                        <a href="#"><i class="fas fa-heartbeat u-s-m-r-6"></i>
 
                                                             <span>Beauty & Health</span></a>
 
@@ -275,19 +273,19 @@
                                                         <ul>
                                                             <li class="mega-list-title">
 
-                                                                <a href="shop-side-version-2.html">3D PRINTER & SUPPLIES</a></li>
+                                                                <a href="#">3D PRINTER & SUPPLIES</a></li>
                                                             <li>
 
-                                                                <a href="shop-side-version-2.html">3d Printer</a></li>
+                                                                <a href="#">3d Printer</a></li>
                                                             <li>
 
-                                                                <a href="shop-side-version-2.html">3d Printing Pen</a></li>
+                                                                <a href="#">3d Printing Pen</a></li>
                                                             <li>
 
-                                                                <a href="shop-side-version-2.html">3d Printing Accessories</a></li>
+                                                                <a href="#">3d Printing Accessories</a></li>
                                                             <li>
 
-                                                                <a href="shop-side-version-2.html">3d Printer Module Board</a></li>
+                                                                <a href="#">3d Printer Module Board</a></li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -1400,7 +1398,7 @@
                                     <a href="index.html">Home</a></li>
                                 <li class="is-marked">
 
-                                    <a href="signup.html">Signup</a></li>
+                                    <a href="signin.html">Signin</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1419,7 +1417,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section__text-wrap">
-                                <h1 class="section__heading u-c-secondary">CREATE AN ACCOUNT</h1>
+                                <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
                             </div>
                         </div>
                     </div>
@@ -1435,80 +1433,58 @@
                         <div class="col-lg-6 col-md-8 u-s-m-b-30">
                             <div class="l-f-o">
                                 <div class="l-f-o__pad-box">
-                                    <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                                    <form class="l-f-o__form">
+                                    <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
+
+                                    <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
+                                    <div class="u-s-m-b-15">
+
+                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                                    <h1 class="gl-h1">SIGNIN</h1>
+
+                                    <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
+                                    <form action="" method="POST" class="l-f-o__form">
                                         <div class="gl-s-api">
                                             <div class="u-s-m-b-15">
 
                                                 <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
 
-                                                    <span>Signup with Facebook</span></button></div>
-                                            <div class="u-s-m-b-30">
+                                                    <span>Signin with Facebook</span></button></div>
+                                            <div class="u-s-m-b-15">
 
                                                 <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
 
-                                                    <span>Signup with Google</span></button></div>
+                                                    <span>Signin with Google</span></button></div>
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="reg-fname">FIRST NAME *</label>
+                                            <label class="gl-label" for="email">E-MAIL *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="First Name"></div>
+                                            <input class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="email" placeholder="Enter E-mail"></div>
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="reg-lname">LAST NAME *</label>
+                                            <label class="gl-label" for="password">PASSWORD *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Last Name"></div>
+                                            <input class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="password" placeholder="Enter Password"></div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
-                                                <!--====== Date of Birth Select-Box ======-->
-
-                                                <span class="gl-label">BIRTHDAY</span>
-                                                <div class="gl-dob"><select class="select-box select-box--primary-style">
-                                                    <option selected>Month</option>
-                                                    <option value="male">January</option>
-                                                    <option value="male">February</option>
-                                                    <option value="male">March</option>
-                                                    <option value="male">April</option>
-                                                </select><select class="select-box select-box--primary-style">
-                                                    <option selected>Day</option>
-                                                    <option value="01">01</option>
-                                                    <option value="02">02</option>
-                                                    <option value="03">03</option>
-                                                    <option value="04">04</option>
-                                                </select><select class="select-box select-box--primary-style">
-                                                    <option selected>Year</option>
-                                                    <option value="1991">1991</option>
-                                                    <option value="1992">1992</option>
-                                                    <option value="1993">1993</option>
-                                                    <option value="1994">1994</option>
-                                                </select></div>
-                                                <!--====== End - Date of Birth Select-Box ======-->
-                                            </div>
+                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">SIGN IN</button></div>
                                             <div class="u-s-m-b-30">
 
-                                                <label class="gl-label" for="gender">GENDER</label><select class="select-box select-box--primary-style u-w-100" id="gender">
-                                                <option selected>Select</option>
-                                                <option value="male">Male</option>
-                                                <option value="male">Female</option>
-                                            </select></div>
+                                                <a class="gl-link" href="#">Lost Your Password?</a></div>
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="reg-email">E-MAIL *</label>
+                                            <!--====== Check Box ======-->
+                                            <div class="check-box">
 
-                                            <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="Enter E-mail"></div>
-                                        <div class="u-s-m-b-30">
+                                                <input type="checkbox" id="remember-me">
+                                                <div class="check-box__state check-box__state--primary">
 
-                                            <label class="gl-label" for="reg-password">PASSWORD *</label>
-
-                                            <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Enter Password"></div>
-                                        <div class="u-s-m-b-15">
-
-                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
-
-                                        <a class="gl-link" href="#">Return to Store</a>
+                                                    <label class="check-box__label" for="remember-me">Remember Me</label></div>
+                                            </div>
+                                            <!--====== End - Check Box ======-->
+                                        </div>
                                     </form>
                                 </div>
                             </div>

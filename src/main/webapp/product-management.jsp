@@ -5,7 +5,9 @@
   Time: 05:59
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
 <html>
 <jsp:include page="./assets/templates/head.jsp"/>
 <body class="config" id="js-scrollspy-trigger">
@@ -34,15 +36,17 @@
                             <th>Category</th>
                             <th>Total amount</th>
                             <th>Deleted / Selling</th>
+                            <th>Created At</th>
+                            <th>Modified At</th>
                             <th style="min-width: 195px">Edit / Remove</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <c:forEach items="${product_list}" var="o">
+                        <c:forEach items="${products}" var="o">
                             <tr>
                                 <td class="product-thumbnail">
-                                    <img src="data:image/jpg;base64,${o.base64Image}" alt="Image" class="img-fluid">
+                                    <img src="data:image/jpg;base64,${product.base64Image}" alt="Image" class="img-fluid">
                                 </td>
 
                                 <td>${o.id}</td>
@@ -51,11 +55,17 @@
 
                                 <td>$${o.price}</td>
 
+                                <td>$${o.description}</td>
+
                                 <td>${o.category.name}</td>
 
-                                <td>${o.amount}</td>
+                                <td>${o.quantity}</td>
 
-                                <td>${(o.isDeleted) ? "Deleted" : "Selling"}</td>
+                                <td>${(o.isDeleted) ? "Deleted" : "Available"}</td>
+
+                                <td>${o.createdAt}</td>
+
+                                <td>${o.modifiedAt}</td>
 
                                 <td>
                                     <a href="edit-product?product-id=${o.id}" class="btn btn-primary btn-lg"
@@ -156,12 +166,12 @@
 
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <label for="product-amount" class="text-black">
+                                                <label for="product-quantity" class="text-black">
                                                     Amount <span class="text-danger">*</span>
                                                 </label>
 
-                                                <input name="product-amount" type="number" class="form-control"
-                                                       id="product-amount">
+                                                <input name="product-quantity" type="number" class="form-control"
+                                                       id="product-quantity">
                                             </div>
                                         </div>
 
@@ -173,7 +183,7 @@
 
                                                 <select name="product-category" id="product-category"
                                                         class="form-control">
-                                                    <c:forEach items="${category_list}" var="o">
+                                                    <c:forEach items="${categories}" var="o">
                                                         <option value="${o.id}">${o.name}</option>
                                                     </c:forEach>
                                                 </select>
