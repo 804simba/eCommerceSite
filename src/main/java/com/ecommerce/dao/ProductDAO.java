@@ -141,14 +141,14 @@ public class ProductDAO {
                 String productName = resultSet.getString(2);
                 double productPrice = resultSet.getDouble(3);
                 String description = resultSet.getString(4);
-                Category category = categoryDAO.getCategory(resultSet.getInt(6));
-                int quantity = resultSet.getInt(4);
-                boolean isDeleted = resultSet.getBoolean(8);
+                Category category = categoryDAO.getCategory(resultSet.getInt(5));
+                int quantity = resultSet.getInt(6);
+                boolean isDeleted = resultSet.getBoolean(7);
 
-                byte[] imageData = resultSet.getBytes("image");
+                byte[] imageData = resultSet.getBytes(8);
                 String base64Image = Base64.getEncoder().encodeToString(imageData);
-                Timestamp createdAt = resultSet.getTimestamp("created_at");
-                Timestamp modifiedAt = resultSet.getTimestamp("modified_at");
+                Timestamp createdAt = resultSet.getTimestamp(8);
+                Timestamp modifiedAt = resultSet.getTimestamp(9);
                 Product product = new Product(productID, productName, productPrice, description, category, quantity, isDeleted, base64Image);
                 product.setCreatedAt(createdAt);
                 product.setModifiedAt(modifiedAt);
@@ -162,18 +162,5 @@ public class ProductDAO {
     public List<Product> get12ProductsOfPage(int index) {
         String query = "SELECT * FROM product WHERE isDeleted = false LIMIT " + ((index - 1) * 12) + ", 12";
         return getListOfProductsHandler(query);
-    }
-    private String getBase64Image(Blob blob) throws SQLException, IOException {
-        InputStream inputStream = blob.getBinaryStream();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
-
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            byteArrayOutputStream.write(buffer, 0, bytesRead);
-        }
-        byte[] imageBytes = byteArrayOutputStream.toByteArray();
-
-        return Base64.getEncoder().encodeToString(imageBytes);
     }
 }
