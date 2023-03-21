@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
             InputStream inputStream = new ByteArrayInputStream(imageData);
             productDAO.addProduct(product.getProductName(),
                     product.getProductPrice(), product.getDescription(),
-                    product.getCategory(), product.getQuantity(), inputStream);
+                    product.getCategory().getId(), product.getQuantity(), inputStream);
 
         } catch (NullPointerException e) {
             System.out.println("Image is empty: " + e.getMessage());
@@ -37,14 +37,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean updateProduct(Product product, User user) {
+    public boolean editProduct(Product product, User user) {
         if (user.getRole() != Role.ADMIN) {
             return false;
         }
         InputStream imageStream = new ByteArrayInputStream(product.getBase64Image().getBytes());
         productDAO.updateProduct(product.getProductID(), product.getProductName(),
                 imageStream, product.getProductPrice(), product.getDescription(),
-                product.getCategory(), product.getQuantity());
+                product.getCategory().getId(), product.getQuantity());
         return true;
     }
 
