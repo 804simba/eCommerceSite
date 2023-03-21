@@ -20,11 +20,12 @@
   <!--====== Vendor Css ======-->
   <link rel="stylesheet" href="../css/vendor.css">
 
+  <!--====== App ======-->
+  <link rel="stylesheet" href="../css/app.css">
+
   <!--====== Utility-Spacing ======-->
   <link rel="stylesheet" href="../css/utility.css">
 
-  <!--====== App ======-->
-  <link rel="stylesheet" href="../css/app.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" type="text/css" href="../fonts/icomoon/style.css">
 
