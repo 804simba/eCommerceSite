@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @WebServlet(name = "EditProductController", value = "/edit-product")
@@ -31,6 +32,19 @@ public class EditProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the product ID from request
+        int productID = Integer.parseInt(request.getParameter("product-id"));
+        // Get product information from request
+        String productName = request.getParameter("product-name");
+        double productPrice = Double.parseDouble(request.getParameter("product-price"));
+        String description = request.getParameter("product-description");
+        int category = Integer.parseInt(request.getParameter("product-category"));
+        int quantity = Integer.parseInt(request.getParameter(""));
 
+        Part part = request.getPart("product-image");
+        InputStream inputStream = part.getInputStream();
+
+        productDAO.editProduct(productID, productName, inputStream, productPrice, description, category, quantity);
+        response.sendRedirect("product-management");
     }
 }

@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Base64;
 import java.util.List;
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -42,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
             return false;
         }
         InputStream imageStream = new ByteArrayInputStream(product.getBase64Image().getBytes());
-        productDAO.updateProduct(product.getProductID(), product.getProductName(),
+        productDAO.editProduct(product.getProductID(), product.getProductName(),
                 imageStream, product.getProductPrice(), product.getDescription(),
                 product.getCategory().getId(), product.getQuantity());
         return true;

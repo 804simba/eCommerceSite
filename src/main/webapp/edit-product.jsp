@@ -106,12 +106,12 @@
 
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="amount" class="text-black">
+                                    <label for="quantity" class="text-black">
                                         Amount <span class="text-danger">*</span>
                                     </label>
 
-                                    <input name="product-amount" type="number" class="form-control"
-                                           id="amount" value="${product.amount}">
+                                    <input name="product-quantity" type="number" class="form-control"
+                                           id="quantity" value="${product.quantity}">
                                 </div>
                             </div>
 
@@ -123,7 +123,7 @@
 
                                     <select name="product-category" id="category"
                                             class="form-control">
-                                        <c:forEach items="${category_list}" var="o">
+                                        <c:forEach items="${categories}" var="o">
                                             <option value="${o.id}">${o.name}</option>
                                         </c:forEach>
                                     </select>

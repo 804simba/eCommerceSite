@@ -4,9 +4,6 @@ import com.ecommerce.config.DBConnection;
 import com.ecommerce.entity.Category;
 import com.ecommerce.entity.Product;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -95,7 +92,7 @@ public class ProductDAO {
         return added;
     }
 
-    public boolean updateProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int category, int quantity) {
+    public boolean editProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int category, int quantity) {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, image = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
