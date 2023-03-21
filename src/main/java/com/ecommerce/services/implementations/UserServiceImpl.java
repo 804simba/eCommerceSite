@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean loginUser(String email, String password) {
-        return userDAO.loginUser(email, password);
+        return userDAO.confirmUserLoginCredentials(email, password);
     }
 
     @Override
     public User getUserByID(int userId) {
-        return userDAO.getUserById(userId);
+        return userDAO.getUserByID(userId);
     }
 
 

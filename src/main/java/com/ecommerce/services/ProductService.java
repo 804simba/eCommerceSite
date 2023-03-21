@@ -6,10 +6,10 @@ import com.ecommerce.entity.User;
 import java.util.List;
 
 public interface ProductService {
-    boolean addProduct(Product product, User user);
+    boolean addProduct(Product product);
 
     Product getProductByID(int id);
-    boolean editProduct(Product product, User user);
-    boolean deleteProduct(Product product, User user);
+    boolean editProduct(Product product);
+    boolean deleteProduct(Product product);
     List<Product> getAllProducts();
 }

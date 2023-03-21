@@ -1,3 +1,4 @@
+<%--<jsp:useBean id="alert" scope="request" type=""/>--%>
 <%--
   Created by IntelliJ IDEA.
   User: decagon
@@ -5,6 +6,7 @@
   Time: 21:50
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -1438,8 +1440,10 @@
                                     <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
                                     <div class="u-s-m-b-15">
 
-                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="${pageContext.request.contextPath}/sign-up">CREATE AN ACCOUNT</a></div>
                                     <h1 class="gl-h1">SIGNIN</h1>
+
+                                    ${alert}
 
                                     <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
                                     <form action="" method="POST" class="l-f-o__form">
@@ -1459,12 +1463,12 @@
 
                                             <label class="gl-label" for="email">E-MAIL *</label>
 
-                                            <input class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="email" placeholder="Enter E-mail"></div>
+                                            <input name="email" class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="email" placeholder="Enter E-mail"></div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="password">PASSWORD *</label>
 
-                                            <input class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="password" placeholder="Enter Password"></div>
+                                            <input name="password" class="input-text validate-input input-text--primary-style" data-validate="Password is required" type="text" id="password" placeholder="Enter Password"></div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
@@ -1478,7 +1482,7 @@
                                             <!--====== Check Box ======-->
                                             <div class="check-box">
 
-                                                <input type="checkbox" id="remember-me">
+                                                <input name="remember-me" type="checkbox" id="remember-me">
                                                 <div class="check-box__state check-box__state--primary">
 
                                                     <label class="check-box__label" for="remember-me">Remember Me</label></div>

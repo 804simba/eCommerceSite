@@ -2,8 +2,6 @@ package com.ecommerce.services.implementations;
 
 import com.ecommerce.dao.ProductDAO;
 import com.ecommerce.entity.Product;
-import com.ecommerce.entity.User;
-import com.ecommerce.enums.Role;
 import com.ecommerce.services.ProductService;
 import lombok.AllArgsConstructor;
 
@@ -14,21 +12,19 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO;
     @Override
-    public boolean addProduct(Product product, User user) {
-        if (user.getRole() != Role.ADMIN) {
-            return false;
-        }
+    public boolean addProduct(Product product) {
+        boolean successful = false;
         try {
             byte[] imageData = product.getImage();
             InputStream inputStream = new ByteArrayInputStream(imageData);
-            productDAO.addProduct(product.getProductName(),
+            successful = productDAO.addProduct(product.getProductName(),
                     product.getProductPrice(), product.getDescription(),
                     product.getCategory().getId(), product.getQuantity(), inputStream);
 
         } catch (NullPointerException e) {
             System.out.println("Image is empty: " + e.getMessage());
         }
-        return true;
+        return successful;
     }
     @Override
     public Product getProductByID(int id) {
@@ -36,24 +32,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean editProduct(Product product, User user) {
-        if (user.getRole() != Role.ADMIN) {
-            return false;
-        }
+    public boolean editProduct(Product product) {
         InputStream imageStream = new ByteArrayInputStream(product.getBase64Image().getBytes());
-        productDAO.editProduct(product.getProductID(), product.getProductName(),
+        return productDAO.editProduct(product.getProductID(), product.getProductName(),
                 imageStream, product.getProductPrice(), product.getDescription(),
                 product.getCategory().getId(), product.getQuantity());
-        return true;
     }
 
     @Override
-    public boolean deleteProduct(Product product, User user) {
-        if (user.getRole() != Role.ADMIN) {
-            return false;
-        }
-        productDAO.deleteProduct(product.getProductID());
-        return true;
+    public boolean deleteProduct(Product product) {
+        return productDAO.deleteProduct(product.getProductID());
     }
     @Override
     public List<Product> getAllProducts() {
