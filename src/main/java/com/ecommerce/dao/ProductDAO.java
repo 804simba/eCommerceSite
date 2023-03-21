@@ -74,7 +74,7 @@ public class ProductDAO {
         return product;
     }
 
-    public boolean addProduct(String productName, double productPrice, String description, Category category, int quantity, InputStream productImage) {
+    public boolean addProduct(String productName, double productPrice, String description, int category, int quantity, InputStream productImage) {
         boolean added = false;
         final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, description, categoryID, quantity, image) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -84,7 +84,7 @@ public class ProductDAO {
             preparedStatement.setString(1, productName);
             preparedStatement.setDouble(2, productPrice);
             preparedStatement.setString(3, description);
-            preparedStatement.setString(4, category.toString());
+            preparedStatement.setInt(4, category);
             preparedStatement.setInt(5, quantity);
             preparedStatement.setBinaryStream(6, productImage);
             preparedStatement.executeUpdate();
@@ -95,7 +95,7 @@ public class ProductDAO {
         return added;
     }
 
-    public boolean updateProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, Category category, int quantity) {
+    public boolean updateProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int category, int quantity) {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, image = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
@@ -105,7 +105,7 @@ public class ProductDAO {
             preparedStatement.setBinaryStream(2, productImage);
             preparedStatement.setDouble(3, productPrice);
             preparedStatement.setString(4, productDescription);
-            preparedStatement.setString(5, category.toString());
+            preparedStatement.setInt(5, category);
             preparedStatement.setInt(6, quantity);
             preparedStatement.setInt(7, productID);
             preparedStatement.executeUpdate();

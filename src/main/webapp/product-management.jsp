@@ -23,6 +23,7 @@
 
 <div class="site-section">
     <div class="container">
+
         <div class="row mb-5">
             <div class="col-md-12">
                 <div class="site-blocks-table">
@@ -46,7 +47,8 @@
                         <c:forEach items="${products}" var="o">
                             <tr>
                                 <td class="product-thumbnail">
-                                    <img src="data:image/jpg;base64,${product.base64Image}" alt="Image" class="img-fluid">
+                                    <img src="data:image/jpg;base64,${product.base64Image}" alt="Image"
+                                         class="img-fluid">
                                 </td>
 
                                 <td>${o.id}</td>
@@ -74,7 +76,7 @@
                                     </a>
 
                                     <a href="remove-product?product-id=${o.id}"
-                                       class="btn btn-primary btn-lg ${(o.isDeleted) ? "disabled" : " "}"
+                                       class="btn btn-primary btn-lg ${(o.isDeleted) ? " disabled" : " " }"
                                        style="background-color: red ; border-color: red">
                                         <span class="icon icon-trash"></span>
                                     </a>
@@ -105,7 +107,7 @@
                     <div class="modal fade bd-example-modal-lg" id="addProductModal" tabindex="-1" role="dialog"
                          aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <form class="modal-content" action="add-product" method="post"
+                            <form class="modal-content" action="${pageContext.request.contextPath}/add-product" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="modal-header">
                                     <h5 class="modal-title text-black" id="addProductModalLabel">
@@ -158,9 +160,8 @@
                                                     Description <span class="text-danger">*</span>
                                                 </label>
 
-                                                <textarea name="product-description" id="product-description"
-                                                          cols="30" rows="7"
-                                                          class="form-control"></textarea>
+                                                <textarea name="product-description" id="product-description" cols="30"
+                                                          rows="7" class="form-control"></textarea>
                                             </div>
                                         </div>
 
@@ -206,6 +207,7 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
