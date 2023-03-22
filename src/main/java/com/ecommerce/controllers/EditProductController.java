@@ -15,8 +15,8 @@ import java.util.List;
 @WebServlet(name = "EditProductController", value = "/edit-product")
 @MultipartConfig(maxFileSize = 1073741824)
 public class EditProductController extends HttpServlet {
-    ProductDAO productDAO;
-    CategoryDAO categoryDAO;
+    ProductDAO productDAO = new ProductDAO();
+    CategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get request for product in DB
@@ -25,27 +25,29 @@ public class EditProductController extends HttpServlet {
         Product product = productDAO.getProductById(productID);
         // get Category for product
         List<Category> categories = categoryDAO.getAllCategories();
+        List<String> images = productDAO.getAllProductImages();
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
+        request.setAttribute("images", images);
         RequestDispatcher dispatcher = request.getRequestDispatcher("edit-product.jsp");
         dispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get the product ID from request
-        int productID = Integer.parseInt(request.getParameter("product-id"));
-        // Get product information from request
-        String productName = request.getParameter("product-name");
-        String productPrice = request.getParameter("product-price");
-        String description = request.getParameter("product-description");
-        int category = Integer.parseInt(request.getParameter("product-category"));
-        int quantity = Integer.parseInt(request.getParameter(""));
-
-        Part part = request.getPart("product-image");
-        InputStream inputStream = part.getInputStream();
-
-        productDAO.editProduct(productID, productName, inputStream, productPrice, description, category, quantity);
-        response.sendRedirect("product-management");
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        // Get the product ID from request
+//        int productID = Integer.parseInt(request.getParameter("productID"));
+//        // Get product information from request
+//        String productName = request.getParameter("product-name");
+//        String productPrice = request.getParameter("product-price");
+//        String description = request.getParameter("product-description");
+//        int quantity = Integer.parseInt(request.getParameter(""));
+//        int category = Integer.parseInt(request.getParameter("product-category"));
+//
+//        Part part = request.getPart("product-image");
+//        InputStream inputStream = part.getInputStream();
+//
+//        productDAO.editProduct(productID, productName, inputStream, productPrice, description, category, quantity);
+//        response.sendRedirect("product-management");
+//    }
 }

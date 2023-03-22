@@ -55,7 +55,7 @@
                                     </label>
 
                                     <input name="product-id" type="text" class="form-control"
-                                           id="id" value="${product.id}" readonly>
+                                           id="id" value="${product.productID}" readonly>
                                 </div>
                             </div>
 
@@ -66,7 +66,7 @@
                                     </label>
 
                                     <input name="product-name" type="text" class="form-control"
-                                           id="name" value="${product.name}">
+                                           id="name" value="${product.productName}">
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@
                                     </label>
 
                                     <input name="product-price" type="number" class="form-control"
-                                           id="price" value="${product.price}">
+                                           id="price" value="${product.productPrice}">
                                 </div>
                             </div>
 
@@ -115,20 +115,20 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="category" class="text-black">
-                                        Category <span class="text-danger">*</span>
-                                    </label>
+<%--                            <div class="form-group row">--%>
+<%--                                <div class="col-md-12">--%>
+<%--                                    <label for="category" class="text-black">--%>
+<%--                                        Category <span class="text-danger">*</span>--%>
+<%--                                    </label>--%>
 
-                                    <select name="product-category" id="category"
-                                            class="form-control">
-                                        <c:forEach items="${categories}" var="o">
-                                            <option value="${o.id}">${o.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
+<%--                                    <select name="product-category" id="category"--%>
+<%--                                            class="form-control">--%>
+<%--                                        <c:forEach items="${categories}" var="o">--%>
+<%--                                            <option value="${o.categoryID}">${o.category.name}</option>--%>
+<%--                                        </c:forEach>--%>
+<%--                                    </select>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
@@ -141,7 +141,7 @@
 
                 <div class="col-md-5 ml-auto">
                     <div class="p-3 border">
-                        <img src="data:image/jpg;base64,${product.base64Image}" alt="image" width="100%">
+                        <img src="/Users/decagon/IdeaProjects/ECommerce/src/main/webapp/assets/images/product/${product.imageName}" alt="image" width="100%">
                     </div>
                 </div>
             </div>
