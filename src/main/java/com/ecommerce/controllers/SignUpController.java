@@ -2,11 +2,13 @@ package com.ecommerce.controllers;
 
 import com.ecommerce.dao.UserDAO;
 import com.ecommerce.entity.User;
+import com.ecommerce.utils.PasswordValidation;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "SignUpController", value = "/sign-up")
 public class SignUpController extends HttpServlet {
@@ -21,7 +23,11 @@ public class SignUpController extends HttpServlet {
         user.setFirstName(fname);
         user.setLastName(lname);
         user.setEmail(email);
-        user.setPassword(password);
+        try {
+            user.setPassword(PasswordValidation.hashPassword(password));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Password hashing exception : "+e.getMessage());
+        }
 
         HttpSession session = request.getSession();
         if (!userDAO.registerUser(user)) {

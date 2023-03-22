@@ -17,7 +17,7 @@ public class ProductDAO {
     CategoryDAO categoryDAO = new CategoryDAO();
     public ProductDAO() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DBConnection.getInstance().getConnection();
         } catch (SQLException e) {
             System.out.println("Database exception: " + e.getMessage());
@@ -55,12 +55,12 @@ public class ProductDAO {
         return products;
     }
 
-    public Product getProductById(int productId) {
+    public Product getProductById(int productID) {
         Product product = null;
         try {
             String sql = "SELECT * FROM products WHERE productID = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, productId);
+            preparedStatement.setInt(1, productID);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 product = resultSetToProduct(resultSet);
@@ -71,17 +71,17 @@ public class ProductDAO {
         return product;
     }
 
-    public boolean addProduct(String productName, double productPrice, String description, int category, int quantity, InputStream productImage) {
+    public boolean addProduct(String productName, double productPrice, String description, int categoryID, int quantity, InputStream productImage) {
         boolean added = false;
         final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, description, categoryID, quantity, image) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(ADD_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setDouble(2, productPrice);
             preparedStatement.setString(3, description);
-            preparedStatement.setInt(4, category);
+            preparedStatement.setInt(4, categoryID);
             preparedStatement.setInt(5, quantity);
             preparedStatement.setBinaryStream(6, productImage);
             preparedStatement.executeUpdate();
@@ -92,17 +92,17 @@ public class ProductDAO {
         return added;
     }
 
-    public boolean editProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int category, int quantity) {
+    public boolean editProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int categoryID, int quantity) {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, image = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setBinaryStream(2, productImage);
             preparedStatement.setDouble(3, productPrice);
             preparedStatement.setString(4, productDescription);
-            preparedStatement.setInt(5, category);
+            preparedStatement.setInt(5, categoryID);
             preparedStatement.setInt(6, quantity);
             preparedStatement.setInt(7, productID);
             preparedStatement.executeUpdate();
@@ -116,7 +116,7 @@ public class ProductDAO {
     public boolean deleteProduct(int productId) {
         boolean deleted = false;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String sql = "DELETE FROM products WHERE productID = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, productId);
@@ -130,7 +130,7 @@ public class ProductDAO {
     public List<Product> getListOfProductsHandler(String query) {
         List<Product> list = new ArrayList<>();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

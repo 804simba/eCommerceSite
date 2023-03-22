@@ -1594,7 +1594,7 @@
                         <div class="outer-footer__content">
 
                             <span class="outer-footer__content-title">Join our Newsletter</span>
-                            <form class="newsletter">
+                            <form action="sign-in" method="POST" class="newsletter">
                                 <div class="u-s-m-b-15">
                                     <div class="radio-box newsletter__radio">
 

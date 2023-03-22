@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="assets/images/favicon.png" rel="shortcut icon">
-    <title>FitShop - Sneakers, Sportwears, Clothes, & more</title>
+    <title>FitShop - Fashion & more</title>
     <!--====== Google Font ======-->
     <link href="assets/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
@@ -1443,10 +1443,8 @@
                                         <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="${pageContext.request.contextPath}/sign-up">CREATE AN ACCOUNT</a></div>
                                     <h1 class="gl-h1">SIGNIN</h1>
 
-                                    ${alert}
-
                                     <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
-                                    <form action="" method="POST" class="l-f-o__form">
+                                    <form action="${pageContext.request.contextPath}/sign-in" method="POST" class="l-f-o__form">
                                         <div class="gl-s-api">
                                             <div class="u-s-m-b-15">
 
@@ -1463,12 +1461,15 @@
 
                                             <label class="gl-label" for="email">E-MAIL *</label>
 
-                                            <input name="email" class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="text" id="email" placeholder="Enter E-mail"></div>
+                                            <input name="email" class="input-text validate-input input-text--primary-style" data-validate="Email is required" type="email" id="email" placeholder="Enter E-mail" required></div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="password">PASSWORD *</label>
 
-                                            <input name="password" class="input-text validate-input input-text--primary-style" data-validate="Password is required" type="text" id="password" placeholder="Enter Password"></div>
+                                            <input name="password" class="input-text validate-input input-text--primary-style" data-validate="Password is required" type="password" id="password" placeholder="Enter Password" required></div>
+                                        <c:if test="${not empty alert}">
+                                            ${alert}
+                                        </c:if>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
