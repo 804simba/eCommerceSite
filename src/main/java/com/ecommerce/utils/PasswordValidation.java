@@ -15,21 +15,8 @@ public class PasswordValidation {
             }
             return sb.toString();
         }
-
         public static boolean validatePassword(String enteredPassword, String storedHashedPassword) throws NoSuchAlgorithmException {
             String enteredHashedPassword = hashPassword(enteredPassword);
             return enteredHashedPassword.equals(storedHashedPassword);
-        }
-
-        public static void main(String[] args) throws NoSuchAlgorithmException {
-            // Example usage
-            String storedHashedPassword = "4bbcb3..."; // Retrieve the stored hashed password from database
-            String enteredPassword = "myPassword123"; // Retrieve the password entered by the user
-            boolean isValid = validatePassword(enteredPassword, storedHashedPassword);
-            if (isValid) {
-                System.out.println("Password is valid");
-            } else {
-                System.out.println("Password is invalid");
-            }
         }
 }

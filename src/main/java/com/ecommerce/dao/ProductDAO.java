@@ -166,4 +166,5 @@ public class ProductDAO {
         String query = "SELECT * FROM product WHERE isDeleted = false LIMIT " + ((index - 1) * 12) + ", 12";
         return getListOfProductsHandler(query);
     }
+    public
 }
