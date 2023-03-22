@@ -115,21 +115,6 @@
                                 </div>
                             </div>
 
-<%--                            <div class="form-group row">--%>
-<%--                                <div class="col-md-12">--%>
-<%--                                    <label for="category" class="text-black">--%>
-<%--                                        Category <span class="text-danger">*</span>--%>
-<%--                                    </label>--%>
-
-<%--                                    <select name="product-category" id="category"--%>
-<%--                                            class="form-control">--%>
-<%--                                        <c:forEach items="${categories}" var="o">--%>
-<%--                                            <option value="${o.categoryID}">${o.category.name}</option>--%>
-<%--                                        </c:forEach>--%>
-<%--                                    </select>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Edit product">

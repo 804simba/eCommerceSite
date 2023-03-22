@@ -15,7 +15,6 @@ import java.util.List;
 @WebServlet(name = "ProductManagementController", value = "/product-management")
 public class ProductManagementController extends HttpServlet {
     ProductDAO productDAO = new ProductDAO();
-    CategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get the adminID from session

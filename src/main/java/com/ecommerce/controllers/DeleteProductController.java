@@ -7,13 +7,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "RemoveProductController", value = "/remove-product")
-public class RemoveProductController extends HttpServlet {
-    ProductDAO productDAO;
+@WebServlet(name = "DeleteProductController", value = "/delete-product")
+public class DeleteProductController extends HttpServlet {
+    ProductDAO productDAO = new ProductDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the ID of the product from the request
-        int productID = Integer.parseInt(request.getParameter("product-id"));
+        int productID = Integer.parseInt(request.getParameter("productID"));
         // Remove product from DB
         productDAO.deleteProduct(productID);
         response.sendRedirect("product-management");

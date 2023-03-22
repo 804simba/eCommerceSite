@@ -16,7 +16,7 @@
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+            <div class="col-md-12 mb-0"><a href="${pageContext.request.contextPath}/index">Home</a> <span class="mx-2 mb-0">/</span> <strong
                     class="text-black">Products management</strong></div>
         </div>
     </div>
@@ -63,12 +63,12 @@
                                         <td>${o.createdAt}</td>
                                         <td>${o.modifiedAt}</td>
                                         <td>
-                                            <a href="edit-product?productID=${o.productID}" class="btn btn-primary btn-sm"
+                                            <a href="edit-product?productID=${o.productID}" class="btn btn-primary btn-md"
                                                style="background-color: green ; border-color: green">
                                                 <span class="icon icon-pencil"></span>
                                             </a>
-                                            <a href="remove-product?productID=${o.productID}"
-<%--                                               class="btn btn-primary btn-sm ${(o.isDeleted) ? "disabled" : " "}"--%>
+                                            <a href="delete-product?productID=${o.productID}"
+                                               class="btn btn-primary btn-md"
                                                style="background-color: red ; border-color: red">
                                                 <span class="icon icon-trash"></span>
                                             </a>
