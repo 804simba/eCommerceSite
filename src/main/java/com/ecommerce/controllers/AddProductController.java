@@ -48,7 +48,7 @@ public class AddProductController extends HttpServlet {
 
         // add product to DB
         productDAO.addProduct(productName, productPrice, imageName, description, category, quantity);
-//        System.out.println("Product added");
-//        response.sendRedirect("product-management");
+        System.out.println("Product added");
+        response.sendRedirect("product-management");
     }
 }

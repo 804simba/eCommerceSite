@@ -36,56 +36,50 @@
                             <th style="max-width: 120px">Product name</th>
                             <th>Price</th>
                             <th>Category</th>
-                            <th>Total amount</th>
-                            <th>Deleted / Selling</th>
+                            <th>Total quantity</th>
                             <th>Created At</th>
                             <th>Modified At</th>
                             <th style="min-width: 195px">Edit / Remove</th>
                         </tr>
                         </thead>
-
                         <tbody>
-                        <c:forEach items="${products}" var="o">
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <img src="data:image/jpg;base64,${product.base64Image}" alt="Image"
-                                         class="img-fluid">
-                                </td>
-
-                                <td>${o.id}</td>
-
-                                <td>${o.name}</td>
-
-                                <td>$${o.price}</td>
-
-                                <td>$${o.description}</td>
-
-                                <td>${o.category.name}</td>
-
-                                <td>${o.quantity}</td>
-
-                                <td>${(o.isDeleted) ? "Deleted" : "Available"}</td>
-
-                                <td>${o.createdAt}</td>
-
-                                <td>${o.modifiedAt}</td>
-
-                                <td>
-                                    <a href="edit-product?product-id=${o.id}" class="btn btn-primary btn-lg"
-                                       style="background-color: green ; border-color: green">
-                                        <span class="icon icon-pencil"></span>
-                                    </a>
-
-                                    <a href="remove-product?product-id=${o.id}"
-                                       class="btn btn-primary btn-lg ${(o.isDeleted) ? " disabled" : " " }"
-                                       style="background-color: red ; border-color: red">
-                                        <span class="icon icon-trash"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${empty products}">
+                                <tr>
+                                    <td colspan="9">No products found</td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${products}" var="o" varStatus="loop">
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="/Users/decagon/IdeaProjects/ECommerce/src/main/webapp/assets/images/product/${images[loop.index]}" alt="Product Image" class="img-fluid">
+                                        </td>
+                                        <td>${o.productID}</td>
+                                        <td>${o.productName}</td>
+                                        <td>$${o.productPrice}</td>
+                                        <td>${o.category.name}</td>
+                                        <td>${o.quantity}</td>
+                                        <td>${o.createdAt}</td>
+                                        <td>${o.modifiedAt}</td>
+                                        <td>
+                                            <a href="edit-product?productID=${o.productID}" class="btn btn-primary btn-sm"
+                                               style="background-color: green ; border-color: green">
+                                                <span class="icon icon-pencil"></span>
+                                            </a>
+                                            <a href="remove-product?productID=${o.productID}"
+<%--                                               class="btn btn-primary btn-sm ${(o.isDeleted) ? "disabled" : " "}"--%>
+                                               style="background-color: red ; border-color: red">
+                                                <span class="icon icon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

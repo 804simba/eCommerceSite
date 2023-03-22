@@ -22,12 +22,15 @@ public class ProductManagementController extends HttpServlet {
 //        HttpSession session = request.getSession();
 ////        User user = new User();
         List<Product> products = productDAO.getAllProducts();
-        List<Category> categories = categoryDAO.getAllCategories();
+        List<String> images = productDAO.getAllProductImages();
+        System.out.println("Products size: " + products.size());
+        System.out.println("images size: " + images.size());
 
         request.setAttribute("products", products);
-        request.setAttribute("categories", categories);
+        request.setAttribute("images", images);
         // set attribute active status for product management tab in header
 //        request.setAttribute("product-management-active", "active");
+
         // Get request dispatcher and render to product-management page.
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-management.jsp");
         dispatcher.forward(request, response);

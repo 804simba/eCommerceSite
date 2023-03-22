@@ -5,7 +5,7 @@ import com.ecommerce.config.DBConnection;
 import com.ecommerce.utils.PasswordValidation;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-
+///Users/decagon/IdeaProjects/ECommerce/src/main/webapp/assets/images/product/MOT-0069 (1).jpg
 public class UserDAO {
     Connection connection;
     PreparedStatement stmt;
@@ -76,8 +76,7 @@ public class UserDAO {
         final String USER_PASSWORD = "SELECT password FROM Users WHERE email = ?";
         String password = null;
         try {
-            Connection conn = DBConnection.getInstance().getConnection();
-            PreparedStatement st = conn.prepareStatement(USER_PASSWORD);
+            PreparedStatement st = connection.prepareStatement(USER_PASSWORD);
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {

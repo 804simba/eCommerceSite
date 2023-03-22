@@ -4,11 +4,9 @@ import com.ecommerce.config.DBConnection;
 import com.ecommerce.entity.Category;
 import com.ecommerce.entity.Product;
 
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 public class ProductDAO {
@@ -19,28 +17,24 @@ public class ProductDAO {
 
     public ProductDAO() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DBConnection.getInstance().getConnection();
         } catch (SQLException e) {
             System.out.println("Database exception: " + e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver Exception: " + e.getMessage());
         }
     }
 
     private Product resultSetToProduct(ResultSet resultSet) throws SQLException {
-        int productId = resultSet.getInt("product_id");
-        String name = resultSet.getString("name");
-        String price = resultSet.getString("price");
-        String description = resultSet.getString("description");
-        Category category = categoryDAO.getCategory(resultSet.getInt(6));
-        int quantity = resultSet.getInt("quantity");
-        boolean isDeleted = resultSet.getBoolean("is_deleted");
-        byte[] image = resultSet.getBytes("image");
-        String base64Image = Base64.getEncoder().encodeToString(image);
-        Timestamp createdAt = resultSet.getTimestamp("created_at");
-        Timestamp modifiedAt = resultSet.getTimestamp("modified_at");
-        return new Product(productId, name, price, description, category, quantity, isDeleted, base64Image);
+        Product product = new Product();
+        product.setProductID(resultSet.getInt("productID"));
+        product.setProductName(resultSet.getString("productName"));
+        product.setProductPrice(resultSet.getString("productPrice"));
+        product.setImageName(resultSet.getString("imageName"));
+        product.setDescription(resultSet.getString("description"));
+        product.setCategory(categoryDAO.getCategory(resultSet.getInt("categoryID")));
+        product.setQuantity(resultSet.getInt("quantity"));
+        product.setCreatedAt(resultSet.getTimestamp("createdAt"));
+        product.setModifiedAt(resultSet.getTimestamp("modifiedAt"));
+        return product;
     }
 
     public List<Product> getAllProducts() {
@@ -70,7 +64,7 @@ public class ProductDAO {
                 product = resultSetToProduct(resultSet);
             }
         } catch (SQLException e) {
-            System.out.println("Database exception: " + e.getMessage());
+            System.out.println("SQL exception: " + e.getMessage());
         }
         return product;
     }
@@ -80,7 +74,6 @@ public class ProductDAO {
         final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, imageName, description, categoryID, quantity) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(ADD_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setBigDecimal(2, new BigDecimal(productPrice));
@@ -91,7 +84,7 @@ public class ProductDAO {
             preparedStatement.executeUpdate();
             added = true;
         } catch (SQLException e) {
-            System.out.println("Database exception: " + e.getMessage());
+            System.out.println("SQL exception: " + e.getMessage());
         }
         return added;
     }
@@ -100,7 +93,6 @@ public class ProductDAO {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, imageName = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setString(2, imageName);
@@ -111,8 +103,8 @@ public class ProductDAO {
             preparedStatement.setInt(7, productID);
             preparedStatement.executeUpdate();
             updated = true;
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Database exception: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("SQL exception: " + e.getMessage());
         }
         return updated;
     }
@@ -120,14 +112,13 @@ public class ProductDAO {
     public boolean deleteProduct(int productId) {
         boolean deleted = false;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String sql = "DELETE FROM products WHERE productID = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, productId);
             preparedStatement.executeUpdate();
             deleted = true;
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Database exception: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("SQL exception: " + e.getMessage());
         }
         return deleted;
     }
@@ -135,7 +126,6 @@ public class ProductDAO {
     public List<Product> getListOfProductsHandler(String query) {
         List<Product> list = new ArrayList<>();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -145,18 +135,14 @@ public class ProductDAO {
                 String description = resultSet.getString(4);
                 Category category = categoryDAO.getCategory(resultSet.getInt(5));
                 int quantity = resultSet.getInt(6);
-                boolean isDeleted = resultSet.getBoolean(7);
-
-                byte[] imageData = resultSet.getBytes(8);
-                String base64Image = Base64.getEncoder().encodeToString(imageData);
                 Timestamp createdAt = resultSet.getTimestamp(8);
                 Timestamp modifiedAt = resultSet.getTimestamp(9);
-                Product product = new Product(productID, productName, productPrice, description, category, quantity, isDeleted, base64Image);
+                Product product = new Product(productID, productName, productPrice, description, category, quantity);
                 product.setCreatedAt(createdAt);
                 product.setModifiedAt(modifiedAt);
                 list.add(product);
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return list;
@@ -166,5 +152,21 @@ public class ProductDAO {
         String query = "SELECT * FROM product WHERE isDeleted = false LIMIT " + ((index - 1) * 12) + ", 12";
         return getListOfProductsHandler(query);
     }
-    public
+    public List<String> getAllProductImages() {
+        List<String> images = new ArrayList<>();
+        String sql = "SELECT imageName FROM products";
+        try {
+            connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String imageName = resultSet.getString("imageName");
+                images.add(imageName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return images;
+    }
+
 }
