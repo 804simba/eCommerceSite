@@ -33,21 +33,18 @@ public class EditProductController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        // Get the product ID from request
-//        int productID = Integer.parseInt(request.getParameter("productID"));
-//        // Get product information from request
-//        String productName = request.getParameter("product-name");
-//        String productPrice = request.getParameter("product-price");
-//        String description = request.getParameter("product-description");
-//        int quantity = Integer.parseInt(request.getParameter(""));
-//        int category = Integer.parseInt(request.getParameter("product-category"));
-//
-//        Part part = request.getPart("product-image");
-//        InputStream inputStream = part.getInputStream();
-//
-//        productDAO.editProduct(productID, productName, inputStream, productPrice, description, category, quantity);
-//        response.sendRedirect("product-management");
-//    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the product ID from request
+        int productID = Integer.parseInt(request.getParameter("product-id"));
+        // Get product information from request
+        String productName = request.getParameter("product-name");
+        String imageName = request.getParameter("product-image");
+        String description = request.getParameter("product-description");
+        String productPrice = request.getParameter("product-price");
+        String quantity = request.getParameter("product-quantity");
+
+        productDAO.editProduct(productID, productName, imageName, productPrice, description, quantity);
+        response.sendRedirect("product-management");
+    }
 }

@@ -89,18 +89,17 @@ public class ProductDAO {
         return added;
     }
 
-    public boolean editProduct(int productID, String productName, String imageName, String productPrice, String productDescription, int categoryID, int quantity) {
+    public boolean editProduct(int productID, String productName, String imageName, String productPrice, String productDescription, String quantity) {
         boolean updated = false;
-        final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, imageName = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
+        final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, imageName = ?, productPrice = ?, description = ?, quantity = ? WHERE productID = ?";
         try {
             preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setString(2, imageName);
             preparedStatement.setString(3, productPrice);
             preparedStatement.setString(4, productDescription);
-            preparedStatement.setInt(5, categoryID);
-            preparedStatement.setInt(6, quantity);
-            preparedStatement.setInt(7, productID);
+            preparedStatement.setString(5, quantity);
+            preparedStatement.setInt(6, productID);
             preparedStatement.executeUpdate();
             updated = true;
         } catch (SQLException e) {
