@@ -15,11 +15,11 @@ public class ProductServiceImpl implements ProductService {
     public boolean addProduct(Product product) {
         boolean successful = false;
         try {
-            byte[] imageData = product.getImage();
-            InputStream inputStream = new ByteArrayInputStream(imageData);
+//            byte[] imageData = product.getImage();
+//            InputStream inputStream = new ByteArrayInputStream(imageData);
             successful = productDAO.addProduct(product.getProductName(),
-                    product.getProductPrice(), product.getDescription(),
-                    String.valueOf(product.getCategory().getId()), String.valueOf(product.getQuantity()), inputStream);
+                    product.getProductPrice(), product.getImageName(), product.getDescription(),
+                    String.valueOf(product.getCategory().getId()), String.valueOf(product.getQuantity()));
 
         } catch (NullPointerException e) {
             System.out.println("Image is empty: " + e.getMessage());
@@ -33,10 +33,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean editProduct(Product product) {
-        InputStream imageStream = new ByteArrayInputStream(product.getBase64Image().getBytes());
-        return productDAO.editProduct(product.getProductID(), product.getProductName(),
-                imageStream, product.getProductPrice(), product.getDescription(),
-                product.getCategory().getId(), product.getQuantity());
+//        InputStream imageStream = new ByteArrayInputStream(product.getBase64Image().getBytes());
+//        return productDAO.editProduct(product.getProductID(), product.getProductName(),
+//                imageStream, product.getProductPrice(), product.getDescription(),
+//                product.getCategory().getId(), product.getQuantity());
+        return false;
     }
 
     @Override

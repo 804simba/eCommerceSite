@@ -16,6 +16,7 @@ public class ProductDAO {
     PreparedStatement preparedStatement;
     ResultSet resultSet;
     CategoryDAO categoryDAO = new CategoryDAO();
+
     public ProductDAO() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,6 +27,7 @@ public class ProductDAO {
             System.out.println("Driver Exception: " + e.getMessage());
         }
     }
+
     private Product resultSetToProduct(ResultSet resultSet) throws SQLException {
         int productId = resultSet.getInt("product_id");
         String name = resultSet.getString("name");
@@ -40,6 +42,7 @@ public class ProductDAO {
         Timestamp modifiedAt = resultSet.getTimestamp("modified_at");
         return new Product(productId, name, price, description, category, quantity, isDeleted, base64Image);
     }
+
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
         try {
@@ -72,24 +75,19 @@ public class ProductDAO {
         return product;
     }
 
-    public boolean addProduct(String productName, String productPrice, String description, String categoryID, String quantity, InputStream productImage) {
+    public boolean addProduct(String productName, String productPrice, String imageName, String description, String categoryID, String quantity) {
         boolean added = false;
-        final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, description, categoryID, quantity, image) " +
+        final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, imageName, description, categoryID, quantity) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(ADD_PRODUCT);
             preparedStatement.setString(1, productName);
-            if (productPrice == null) {
-                // Handle the case where productPrice is null
-                System.out.println("Price is null");
-            } else {
-                preparedStatement.setBigDecimal(2, new BigDecimal(productPrice));
-            }
-            preparedStatement.setString(3, description);
-            preparedStatement.setString(4, categoryID);
-            preparedStatement.setString(5, quantity);
-            preparedStatement.setBinaryStream(6, productImage);
+            preparedStatement.setBigDecimal(2, new BigDecimal(productPrice));
+            preparedStatement.setString(3, imageName);
+            preparedStatement.setString(4, description);
+            preparedStatement.setString(5, categoryID);
+            preparedStatement.setString(6, quantity);
             preparedStatement.executeUpdate();
             added = true;
         } catch (SQLException e) {
@@ -98,14 +96,14 @@ public class ProductDAO {
         return added;
     }
 
-    public boolean editProduct(int productID, String productName, InputStream productImage, String productPrice, String productDescription, int categoryID, int quantity) {
+    public boolean editProduct(int productID, String productName, String imageName, String productPrice, String productDescription, int categoryID, int quantity) {
         boolean updated = false;
-        final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, image = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
+        final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, imageName = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1, productName);
-            preparedStatement.setBinaryStream(2, productImage);
+            preparedStatement.setString(2, imageName);
             preparedStatement.setString(3, productPrice);
             preparedStatement.setString(4, productDescription);
             preparedStatement.setInt(5, categoryID);
@@ -133,6 +131,7 @@ public class ProductDAO {
         }
         return deleted;
     }
+
     public List<Product> getListOfProductsHandler(String query) {
         List<Product> list = new ArrayList<>();
         try {
@@ -162,6 +161,7 @@ public class ProductDAO {
         }
         return list;
     }
+
     public List<Product> get12ProductsOfPage(int index) {
         String query = "SELECT * FROM product WHERE isDeleted = false LIMIT " + ((index - 1) * 12) + ", 12";
         return getListOfProductsHandler(query);
