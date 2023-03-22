@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class Product {
     private int productID;
     private String productName;
-    private double productPrice;
+    private String productPrice;
     private String description;
     private Category category;
     private int quantity;
@@ -21,7 +21,7 @@ public class Product {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
-    public Product(int productID, String productName, double productPrice, String description, Category category, int quantity, boolean isDeleted, String base64Image) {
+    public Product(int productID, String productName, String productPrice, String description, Category category, int quantity, boolean isDeleted, String base64Image) {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;

@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
             InputStream inputStream = new ByteArrayInputStream(imageData);
             successful = productDAO.addProduct(product.getProductName(),
                     product.getProductPrice(), product.getDescription(),
-                    product.getCategory().getId(), product.getQuantity(), inputStream);
+                    String.valueOf(product.getCategory().getId()), String.valueOf(product.getQuantity()), inputStream);
 
         } catch (NullPointerException e) {
             System.out.println("Image is empty: " + e.getMessage());

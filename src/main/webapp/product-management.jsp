@@ -5,9 +5,10 @@
   Time: 05:59
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
+<%--<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>--%>
 <html>
 <jsp:include page="./assets/templates/head.jsp"/>
 <body class="config" id="js-scrollspy-trigger">
@@ -107,7 +108,7 @@
                     <div class="modal fade bd-example-modal-lg" id="addProductModal" tabindex="-1" role="dialog"
                          aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <form class="modal-content" action="${pageContext.request.contextPath}/add-product" method="POST"
+                            <form class="modal-content" action="add-product" method="post"
                                   enctype="multipart/form-data">
                                 <div class="modal-header">
                                     <h5 class="modal-title text-black" id="addProductModalLabel">
@@ -168,7 +169,7 @@
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <label for="product-quantity" class="text-black">
-                                                    Amount <span class="text-danger">*</span>
+                                                    Quantity <span class="text-danger">*</span>
                                                 </label>
 
                                                 <input name="product-quantity" type="number" class="form-control"
@@ -184,9 +185,9 @@
 
                                                 <select name="product-category" id="product-category"
                                                         class="form-control">
-                                                    <c:forEach items="${categories}" var="o">
-                                                        <option value="${o.id}">${o.name}</option>
-                                                    </c:forEach>
+                                                        <option value="1">MEN</option>
+                                                        <option value="2">WOMEN</option>
+                                                        <option value="3">KIDS</option>
                                                 </select>
                                             </div>
                                         </div>

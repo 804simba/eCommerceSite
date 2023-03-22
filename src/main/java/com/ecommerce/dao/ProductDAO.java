@@ -5,6 +5,7 @@ import com.ecommerce.entity.Category;
 import com.ecommerce.entity.Product;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -28,7 +29,7 @@ public class ProductDAO {
     private Product resultSetToProduct(ResultSet resultSet) throws SQLException {
         int productId = resultSet.getInt("product_id");
         String name = resultSet.getString("name");
-        double price = resultSet.getDouble("price");
+        String price = resultSet.getString("price");
         String description = resultSet.getString("description");
         Category category = categoryDAO.getCategory(resultSet.getInt(6));
         int quantity = resultSet.getInt("quantity");
@@ -71,28 +72,33 @@ public class ProductDAO {
         return product;
     }
 
-    public boolean addProduct(String productName, double productPrice, String description, int categoryID, int quantity, InputStream productImage) {
+    public boolean addProduct(String productName, String productPrice, String description, String categoryID, String quantity, InputStream productImage) {
         boolean added = false;
         final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, description, categoryID, quantity, image) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
             preparedStatement = connection.prepareStatement(ADD_PRODUCT);
             preparedStatement.setString(1, productName);
-            preparedStatement.setDouble(2, productPrice);
+            if (productPrice == null) {
+                // Handle the case where productPrice is null
+                System.out.println("Price is null");
+            } else {
+                preparedStatement.setBigDecimal(2, new BigDecimal(productPrice));
+            }
             preparedStatement.setString(3, description);
-            preparedStatement.setInt(4, categoryID);
-            preparedStatement.setInt(5, quantity);
+            preparedStatement.setString(4, categoryID);
+            preparedStatement.setString(5, quantity);
             preparedStatement.setBinaryStream(6, productImage);
             preparedStatement.executeUpdate();
             added = true;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println("Database exception: " + e.getMessage());
         }
         return added;
     }
 
-    public boolean editProduct(int productID, String productName, InputStream productImage, double productPrice, String productDescription, int categoryID, int quantity) {
+    public boolean editProduct(int productID, String productName, InputStream productImage, String productPrice, String productDescription, int categoryID, int quantity) {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, image = ?, productPrice = ?, description = ?, categoryID = ?, quantity = ? WHERE productID = ?";
         try {
@@ -100,7 +106,7 @@ public class ProductDAO {
             preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1, productName);
             preparedStatement.setBinaryStream(2, productImage);
-            preparedStatement.setDouble(3, productPrice);
+            preparedStatement.setString(3, productPrice);
             preparedStatement.setString(4, productDescription);
             preparedStatement.setInt(5, categoryID);
             preparedStatement.setInt(6, quantity);
@@ -136,7 +142,7 @@ public class ProductDAO {
             while (resultSet.next()) {
                 int productID = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
-                double productPrice = resultSet.getDouble(3);
+                String productPrice = resultSet.getString(3);
                 String description = resultSet.getString(4);
                 Category category = categoryDAO.getCategory(resultSet.getInt(5));
                 int quantity = resultSet.getInt(6);

@@ -14,20 +14,20 @@ import java.util.List;
 
 @WebServlet(name = "ProductManagementController", value = "/product-management")
 public class ProductManagementController extends HttpServlet {
-    ProductDAO productDAO;
-    CategoryDAO categoryDAO;
+    ProductDAO productDAO = new ProductDAO();
+    CategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get the adminID from session
-        HttpSession session = request.getSession();
-        User user = new User();
+//        HttpSession session = request.getSession();
+////        User user = new User();
         List<Product> products = productDAO.getAllProducts();
         List<Category> categories = categoryDAO.getAllCategories();
 
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         // set attribute active status for product management tab in header
-        request.setAttribute("product-management-active", "active");
+//        request.setAttribute("product-management-active", "active");
         // Get request dispatcher and render to product-management page.
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-management.jsp");
         dispatcher.forward(request, response);

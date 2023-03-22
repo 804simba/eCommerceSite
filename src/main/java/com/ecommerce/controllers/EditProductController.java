@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @WebServlet(name = "EditProductController", value = "/edit-product")
+@MultipartConfig(maxFileSize = 1073741824)
 public class EditProductController extends HttpServlet {
     ProductDAO productDAO;
     CategoryDAO categoryDAO;
@@ -36,7 +37,7 @@ public class EditProductController extends HttpServlet {
         int productID = Integer.parseInt(request.getParameter("product-id"));
         // Get product information from request
         String productName = request.getParameter("product-name");
-        double productPrice = Double.parseDouble(request.getParameter("product-price"));
+        String productPrice = request.getParameter("product-price");
         String description = request.getParameter("product-description");
         int category = Integer.parseInt(request.getParameter("product-category"));
         int quantity = Integer.parseInt(request.getParameter(""));
