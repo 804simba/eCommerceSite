@@ -50,7 +50,7 @@
 
                     <!--====== Main Logo ======-->
 
-                    <a class="main-logo" href="index.html">
+                    <a class="main-logo" href="indexl">
 
                         <img src="images/logo/logo-1.png" alt=""></a>
                     <!--====== End - Main Logo ======-->
@@ -236,28 +236,28 @@
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-utensils u-s-m-r-6"></i>
+                                                        <a href="indexl"><i class="fas fa-utensils u-s-m-r-6"></i>
 
                                                             <span>Food & Supplies</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                        <a href="indexl"><i class="fas fa-couch u-s-m-r-6"></i>
 
                                                             <span>Furniture & Decor</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-football-ball u-s-m-r-6"></i>
+                                                        <a href="indexl"><i class="fas fa-football-ball u-s-m-r-6"></i>
 
                                                             <span>Sports & Game</span></a>
 
                                                         <span class="js-menu-toggle"></span></li>
                                                     <li>
 
-                                                        <a href="index.html"><i class="fas fa-heartbeat u-s-m-r-6"></i>
+                                                        <a href="indexl"><i class="fas fa-heartbeat u-s-m-r-6"></i>
 
                                                             <span>Beauty & Health</span></a>
 
@@ -959,13 +959,13 @@
                                             <ul style="width:118px">
                                                 <li>
 
-                                                    <a href="index.html">Home 1</a></li>
+                                                    <a href="indexl">Home 1</a></li>
                                                 <li>
 
-                                                    <a href="index-2.html">Home 2</a></li>
+                                                    <a href="indextml">Home 2</a></li>
                                                 <li>
 
-                                                    <a href="index-3.html">Home 3</a></li>
+                                                    <a href="indextml">Home 3</a></li>
                                             </ul>
                                             <!--====== End - Dropdown ======-->
                                         </li>
@@ -1218,7 +1218,7 @@
                             <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                 <li>
 
-                                    <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
+                                    <a href="indexl"><i class="fas fa-home u-c-brand"></i></a></li>
                                 <li>
 
                                     <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
@@ -2124,7 +2124,7 @@
 
                                     <span class="product-o__name">
 
-                                            <a href="product-detail.html">Nikon DSLR 4K Camera</a></span>
+                                            <a href="product-detail">Nikon DSLR 4K Camera</a></span>
                                     <div class="product-o__rating gl-rating-style"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                         <span class="product-o__review">(0)</span></div>
@@ -2138,7 +2138,7 @@
                                 <div class="product-o product-o--hover-on">
                                     <div class="product-o__wrap">
 
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail">
 
                                             <img class="aspect__img" src="images/product/electronic/product14.jpg" alt=""></a>
                                         <div class="product-o__action-wrap">
@@ -2165,7 +2165,7 @@
 
                                     <span class="product-o__name">
 
-                                            <a href="product-detail.html">Nikon DSLR 2K Camera</a></span>
+                                            <a href="product-detail">Nikon DSLR 2K Camera</a></span>
                                     <div class="product-o__rating gl-rating-style"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                         <span class="product-o__review">(0)</span></div>
@@ -3360,7 +3360,7 @@
                                                 <a href="contact.html">Contact Us</a></li>
                                             <li>
 
-                                                <a href="index.html">Sitemap</a></li>
+                                                <a href="indexl">Sitemap</a></li>
                                             <li>
 
                                                 <a href="dash-my-order.html">Delivery</a></li>
@@ -3418,7 +3418,7 @@
 
                                 <span>Copyright © 2018</span>
 
-                                <a href="index.html">Reshop</a>
+                                <a href="indexl">Reshop</a>
 
                                 <span>All Right Reserved</span></div>
                             <div class="lower-footer__payment">
@@ -3456,7 +3456,7 @@
                                 <ul class="pd-breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.hml">Home</a></li>
+                                        <a href="index">Home</a></li>
                                     <li class="has-separator">
 
                                         <a href="shop-side-version-2.html">Electronics</a></li>

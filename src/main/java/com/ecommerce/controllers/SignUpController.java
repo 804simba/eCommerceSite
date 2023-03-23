@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet(name = "SignUpController", value = "/sign-up")
 public class SignUpController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fname = request.getParameter("reg-fname");
@@ -23,11 +24,7 @@ public class SignUpController extends HttpServlet {
         user.setFirstName(fname);
         user.setLastName(lname);
         user.setEmail(email);
-        try {
-            user.setPassword(PasswordValidation.hashPassword(password));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Password hashing exception : "+e.getMessage());
-        }
+        user.setPassword(password);
 
         HttpSession session = request.getSession();
         if (!userDAO.registerUser(user)) {

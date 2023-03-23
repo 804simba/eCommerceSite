@@ -8,7 +8,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>--%>
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
 <html>
 <jsp:include page="./assets/templates/head.jsp"/>
 <body class="config" id="js-scrollspy-trigger">

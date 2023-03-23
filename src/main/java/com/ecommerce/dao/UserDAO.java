@@ -5,7 +5,6 @@ import com.ecommerce.config.DBConnection;
 import com.ecommerce.utils.PasswordValidation;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-///Users/decagon/IdeaProjects/ECommerce/src/main/webapp/assets/images/product/MOT-0069 (1).jpg
 public class UserDAO {
     Connection connection;
     PreparedStatement stmt;
@@ -48,7 +47,7 @@ public class UserDAO {
     public boolean confirmUserLoginCredentials(String email, String password) {
         final String LOGIN_USER = "SELECT * FROM users WHERE email = ? AND password = ?";
         boolean result = false;
-        String hashedPassword = getPasswordFromDB(email);
+//        String hashedPassword = getPasswordFromDB(email);
         try {
             Connection conn = DBConnection.getInstance().getConnection();
             PreparedStatement st = conn.prepareStatement(LOGIN_USER);
@@ -58,7 +57,7 @@ public class UserDAO {
 
             if (rs.next()) {
                 if (rs.getString("email").equals(email)
-                        && rs.getString("password").equals(hashedPassword)) {
+                        && rs.getString("password").equals(password)) {
                     result = true;
                 }
             }
