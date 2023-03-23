@@ -3,8 +3,6 @@ package com.ecommerce.dao;
 import com.ecommerce.entity.User;
 import com.ecommerce.config.DBConnection;
 import com.ecommerce.exceptions.UserNotFoundException;
-import com.ecommerce.utils.PasswordValidation;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 public class UserDAO implements IUserDAO {
     Connection connection;

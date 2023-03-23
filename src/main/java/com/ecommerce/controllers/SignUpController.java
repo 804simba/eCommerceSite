@@ -4,13 +4,10 @@ import com.ecommerce.dao.UserDAO;
 import com.ecommerce.entity.User;
 import com.ecommerce.services.UserService;
 import com.ecommerce.services.implementations.UserServiceImpl;
-import com.ecommerce.utils.PasswordValidation;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "SignUpController", value = "/sign-up")
 public class SignUpController extends HttpServlet {
