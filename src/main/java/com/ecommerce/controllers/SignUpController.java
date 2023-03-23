@@ -2,6 +2,8 @@ package com.ecommerce.controllers;
 
 import com.ecommerce.dao.UserDAO;
 import com.ecommerce.entity.User;
+import com.ecommerce.services.UserService;
+import com.ecommerce.services.implementations.UserServiceImpl;
 import com.ecommerce.utils.PasswordValidation;
 
 import javax.servlet.*;
@@ -12,10 +14,13 @@ import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "SignUpController", value = "/sign-up")
 public class SignUpController extends HttpServlet {
-    UserDAO userDAO = new UserDAO();
+    UserService userService;
+    public SignUpController() {
+        this.userService = new UserServiceImpl(new UserDAO());
+    }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fname = request.getParameter("reg-fname");
         String lname = request.getParameter("reg-lname");
         String email = request.getParameter("reg-email");
@@ -27,7 +32,7 @@ public class SignUpController extends HttpServlet {
         user.setPassword(password);
 
         HttpSession session = request.getSession();
-        if (!userDAO.registerUser(user)) {
+        if (!userService.registerUser(user)) {
             String errorMessage = "failed";
             session.setAttribute("Registration Status", errorMessage);
         } else {
@@ -38,7 +43,7 @@ public class SignUpController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect("sign-up.jsp");
     }
 }

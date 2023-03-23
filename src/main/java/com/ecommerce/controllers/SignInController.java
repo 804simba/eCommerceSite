@@ -1,18 +1,23 @@
 package com.ecommerce.controllers;
 
 import com.ecommerce.dao.UserDAO;
-import com.ecommerce.utils.PasswordValidation;
+import com.ecommerce.services.UserService;
+import com.ecommerce.services.implementations.UserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "LoginController", value = "/sign-in")
 public class SignInController extends HttpServlet {
-    UserDAO userDAO = new UserDAO();
+//    UserDAO userDAO = new UserDAO();
     HttpSession session;
+    UserService userService;
+    public SignInController() {
+        UserDAO userDAO = new UserDAO();
+        this.userService = new UserServiceImpl(userDAO);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,7 +29,7 @@ public class SignInController extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("password", password);
                 response.sendRedirect("product-management.jsp");
-            } else if (userDAO.confirmUserLoginCredentials(email, password)) {
+            } else if (userService.confirmUserLoginCredentials(email, password)) {
                 session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("password", password);

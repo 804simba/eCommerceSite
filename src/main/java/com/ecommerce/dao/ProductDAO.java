@@ -3,13 +3,14 @@ package com.ecommerce.dao;
 import com.ecommerce.config.DBConnection;
 import com.ecommerce.entity.Category;
 import com.ecommerce.entity.Product;
+import com.ecommerce.exceptions.ProductNotFoundException;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
+public class ProductDAO implements IProductDAO {
     Connection connection;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
@@ -23,7 +24,7 @@ public class ProductDAO {
         }
     }
 
-    private Product resultSetToProduct(ResultSet resultSet) throws SQLException {
+    private Product resultSetToProduct(ResultSet resultSet) throws SQLException, ProductNotFoundException {
         Product product = new Product();
         product.setProductID(resultSet.getInt("productID"));
         product.setProductName(resultSet.getString("productName"));
@@ -36,8 +37,8 @@ public class ProductDAO {
         product.setModifiedAt(resultSet.getTimestamp("modifiedAt"));
         return product;
     }
-
-    public List<Product> getAllProducts() {
+    @Override
+    public List<Product> getAllProducts() throws ProductNotFoundException {
         List<Product> products = new ArrayList<>();
         try {
             String sql = "SELECT * FROM products";
@@ -47,12 +48,14 @@ public class ProductDAO {
                 Product product = resultSetToProduct(resultSet);
                 products.add(product);
             }
-        } catch (SQLException e) {
-            System.out.println("Database exception: " + e.getMessage());
+        } catch (SQLException  e) {
+            System.out.println("Product/SQL exception: " + e.getMessage());
+        } catch (ProductNotFoundException e) {
+            throw new ProductNotFoundException("Product not found...");
         }
         return products;
     }
-
+    @Override
     public Product getProductById(int productID) {
         Product product = null;
         try {
@@ -63,12 +66,12 @@ public class ProductDAO {
             if (resultSet.next()) {
                 product = resultSetToProduct(resultSet);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ProductNotFoundException e) {
             System.out.println("SQL exception: " + e.getMessage());
         }
         return product;
     }
-
+    @Override
     public boolean addProduct(String productName, String productPrice, String imageName, String description, String categoryID, String quantity) {
         boolean added = false;
         final String ADD_PRODUCT = "INSERT INTO Products (productName, productPrice, imageName, description, categoryID, quantity) " +
@@ -88,7 +91,7 @@ public class ProductDAO {
         }
         return added;
     }
-
+    @Override
     public boolean editProduct(int productID, String productName, String imageName, String productPrice, String productDescription, String quantity) {
         boolean updated = false;
         final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, imageName = ?, productPrice = ?, description = ?, quantity = ? WHERE productID = ?";
@@ -107,7 +110,7 @@ public class ProductDAO {
         }
         return updated;
     }
-
+    @Override
     public boolean deleteProduct(int productId) {
         boolean deleted = false;
         try {
@@ -121,7 +124,7 @@ public class ProductDAO {
         }
         return deleted;
     }
-
+    @Override
     public List<Product> getListOfProductsHandler(String query) {
         List<Product> list = new ArrayList<>();
         try {
@@ -146,11 +149,12 @@ public class ProductDAO {
         }
         return list;
     }
-
+    @Override
     public List<Product> get12ProductsOfPage(int index) {
         String query = "SELECT * FROM product WHERE isDeleted = false LIMIT " + ((index - 1) * 12) + ", 12";
         return getListOfProductsHandler(query);
     }
+    @Override
     public List<String> getAllProductImages() {
         List<String> images = new ArrayList<>();
         String sql = "SELECT imageName FROM products";

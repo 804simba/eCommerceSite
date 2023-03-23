@@ -1,31 +1,44 @@
 package com.ecommerce.controllers;
 
 import com.ecommerce.dao.CategoryDAO;
+import com.ecommerce.dao.ICategoryDAO;
+import com.ecommerce.dao.IProductDAO;
 import com.ecommerce.dao.ProductDAO;
 import com.ecommerce.entity.Category;
 import com.ecommerce.entity.Product;
+import com.ecommerce.services.CategoryService;
+import com.ecommerce.services.ProductService;
+import com.ecommerce.services.implementations.CategoryServiceImpl;
+import com.ecommerce.services.implementations.ProductServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @WebServlet(name = "EditProductController", value = "/edit-product")
 @MultipartConfig(maxFileSize = 1073741824)
 public class EditProductController extends HttpServlet {
-    ProductDAO productDAO = new ProductDAO();
-    CategoryDAO categoryDAO = new CategoryDAO();
+    ProductService productService;
+    CategoryService categoryService;
+
+    public EditProductController() {
+        IProductDAO productDAO = new ProductDAO();
+        ICategoryDAO categoryDAO = new CategoryDAO();
+        this.productService = new ProductServiceImpl(productDAO);
+        this.categoryService = new CategoryServiceImpl(categoryDAO);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get request for product in DB
         int productID = Integer.parseInt(request.getParameter("productID"));
         // get product from database
-        Product product = productDAO.getProductById(productID);
+        Product product = productService.getProductByID(productID);
         // get Category for product
-        List<Category> categories = categoryDAO.getAllCategories();
-        List<String> images = productDAO.getAllProductImages();
+        List<Category> categories = categoryService.getAllCategories();
+        List<String> images = productService.getAllProductImages();
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
         request.setAttribute("images", images);
@@ -44,7 +57,7 @@ public class EditProductController extends HttpServlet {
         String productPrice = request.getParameter("product-price");
         String quantity = request.getParameter("product-quantity");
 
-        productDAO.editProduct(productID, productName, imageName, productPrice, description, quantity);
+        productService.editProduct(productID, productName, imageName, productPrice, description, quantity);
         response.sendRedirect("product-management");
     }
 }

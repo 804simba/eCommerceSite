@@ -1,7 +1,9 @@
 package com.ecommerce.controllers;
 
+import com.ecommerce.dao.IProductDAO;
 import com.ecommerce.dao.ProductDAO;
-import com.ecommerce.entity.User;
+import com.ecommerce.services.ProductService;
+import com.ecommerce.services.implementations.ProductServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,7 +15,11 @@ import java.io.InputStream;
 @WebServlet(name = "AddProductController", value = "/add-product")
 @MultipartConfig
 public class AddProductController extends HttpServlet {
-    ProductDAO productDAO = new ProductDAO();
+    private final ProductService productService;
+    public AddProductController() {
+        IProductDAO productDAO = new ProductDAO();
+        this.productService = new ProductServiceImpl(productDAO);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,16 +33,12 @@ public class AddProductController extends HttpServlet {
         // Get uploaded image
         Part imagePart = request.getPart("product-image");
         String imageName = imagePart.getSubmittedFileName();
-//        InputStream imageStream = imagePart.getInputStream();
-        // Get admin id for product
-//        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("admin");
-//        int userID = user.getUserID();
+//
         System.out.println("image name: " + imageName);
         String uploadPath = "/Users/decagon/IdeaProjects/ECommerce/src/main/webapp/assets/images/product/" + imageName;
         System.out.println("Upload path: " + uploadPath);
 
-        try ( FileOutputStream fos = new FileOutputStream(uploadPath);
+        try (FileOutputStream fos = new FileOutputStream(uploadPath);
               InputStream imageStream = imagePart.getInputStream()) {
             byte[] data = new byte[imageStream.available()];
             int readResult = imageStream.read();
@@ -47,7 +49,7 @@ public class AddProductController extends HttpServlet {
         }
 
         // add product to DB
-        productDAO.addProduct(productName, productPrice, imageName, description, category, quantity);
+        productService.addProduct(productName, productPrice, imageName, description, category, quantity);
         System.out.println("Product added");
         response.sendRedirect("product-management");
     }

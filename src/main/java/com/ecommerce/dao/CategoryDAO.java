@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAO {
+public class CategoryDAO implements ICategoryDAO {
     Connection connection;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
@@ -25,6 +25,7 @@ public class CategoryDAO {
             System.out.println("Driver Exception: " + e.getMessage());
         }
     }
+    @Override
     public Category getCategory(int categoryID) {
         Category category = new Category();
         final String SELECT_BY_CATEGORY = "SELECT * FROM Categories WHERE categoryID = " + categoryID;
@@ -41,6 +42,7 @@ public class CategoryDAO {
         }
         return category;
     }
+    @Override
     public List<Category> getAllCategories() {
         List<Category> list = new ArrayList<>();
         String query = "SELECT * FROM Categories";

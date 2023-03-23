@@ -2,10 +2,11 @@ package com.ecommerce.dao;
 
 import com.ecommerce.entity.User;
 import com.ecommerce.config.DBConnection;
+import com.ecommerce.exceptions.UserNotFoundException;
 import com.ecommerce.utils.PasswordValidation;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     Connection connection;
     PreparedStatement stmt;
 
@@ -16,7 +17,7 @@ public class UserDAO {
             System.out.println("Database exception: " + e.getMessage());
         }
     }
-    private User resultSetToUser(ResultSet rs) throws SQLException {
+    private User resultSetToUser(ResultSet rs) throws SQLException, UserNotFoundException {
         int userID = rs.getInt("id");
         String firstName = rs.getString("firstName");
         String lastName = rs.getString("lastName");
@@ -26,7 +27,7 @@ public class UserDAO {
         Timestamp modifiedAt = rs.getTimestamp("modifiedAt");
         return new User(userID,firstName, lastName, email, password, createdAt, modifiedAt);
     }
-
+    @Override
     public boolean registerUser(User user) {
         final String REGISTER_USER = "INSERT INTO users (firstName, lastName, email, password) " +
                 "VALUES (?, ?, ?, ?)";
@@ -43,7 +44,7 @@ public class UserDAO {
             return false;
         }
     }
-
+    @Override
     public boolean confirmUserLoginCredentials(String email, String password) {
         final String LOGIN_USER = "SELECT * FROM users WHERE email = ? AND password = ?";
         boolean result = false;
@@ -65,7 +66,8 @@ public class UserDAO {
         }
         return result;
     }
-    public User getUserByID(int id) {
+    @Override
+    public User getUserByID(int id) throws UserNotFoundException {
         User user = null;
         final String GET_USERS_BY_ID = "SELECT * FROM users WHERE userID = ?";
         try {
@@ -78,6 +80,8 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving user: " + e.getMessage());
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException("User not found..");
         }
 
         return user;

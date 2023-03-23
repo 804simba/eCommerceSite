@@ -1140,7 +1140,7 @@
                                         </li>
                                         <li>
 
-                                            <a href="cart.html">Cart</a></li>
+                                            <a href="cart">Cart</a></li>
                                         <li>
 
                                             <a href="wishlist.html">Wishlist</a></li>
@@ -1218,7 +1218,7 @@
                             <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                 <li>
 
-                                    <a href="indexl"><i class="fas fa-home u-c-brand"></i></a></li>
+                                    <a href="index"><i class="fas fa-home u-c-brand"></i></a></li>
                                 <li>
 
                                     <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
@@ -1241,7 +1241,7 @@
                                                 <div class="mini-product">
                                                     <div class="mini-product__image-wrapper">
 
-                                                        <a class="mini-product__link" href="product-detail.html">
+                                                        <a class="mini-product__link" href="product-detail">
 
                                                             <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
                                                     <div class="mini-product__info-wrapper">
@@ -3329,7 +3329,7 @@
                                         <ul>
                                             <li>
 
-                                                <a href="cart.html">Cart</a></li>
+                                                <a href="cart">Cart</a></li>
                                             <li>
 
                                                 <a href="dashboard.html">Account</a></li>
@@ -3360,7 +3360,7 @@
                                                 <a href="contact.html">Contact Us</a></li>
                                             <li>
 
-                                                <a href="indexl">Sitemap</a></li>
+                                                <a href="index">Sitemap</a></li>
                                             <li>
 
                                                 <a href="dash-my-order.html">Delivery</a></li>

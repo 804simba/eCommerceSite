@@ -1,13 +1,10 @@
-package com.ecommerce.services;
+package com.ecommerce.dao;
 
 import com.ecommerce.entity.User;
 import com.ecommerce.exceptions.UserNotFoundException;
 
-import java.sql.ResultSet;
-import java.util.List;
-
-public interface UserService {
+public interface IUserDAO {
     boolean registerUser(User user);
     boolean confirmUserLoginCredentials(String email, String password);
-    User getUserByID(int userId) throws UserNotFoundException;
+    User getUserByID(int id) throws UserNotFoundException;
 }

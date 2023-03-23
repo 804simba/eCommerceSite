@@ -2,11 +2,10 @@ package com.ecommerce.services.implementations;
 
 import com.ecommerce.dao.UserDAO;
 import com.ecommerce.entity.User;
+import com.ecommerce.exceptions.UserNotFoundException;
 import com.ecommerce.services.UserService;
 import lombok.AllArgsConstructor;
 
-import java.sql.ResultSet;
-import java.util.List;
 
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -18,33 +17,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean loginUser(String email, String password) {
+    public boolean confirmUserLoginCredentials(String email, String password) {
         return userDAO.confirmUserLoginCredentials(email, password);
     }
 
     @Override
-    public User getUserByID(int userId) {
+    public User getUserByID(int userId) throws UserNotFoundException {
         return userDAO.getUserByID(userId);
-    }
-
-
-    @Override
-    public List<User> getAllUsers() {
-        return null;
-    }
-
-    @Override
-    public boolean updateUser(User user) {
-        return false;
-    }
-
-    @Override
-    public void deleteUser(int id) {
-
-    }
-
-    @Override
-    public User extractUserFromResultSet(ResultSet rs) {
-        return null;
     }
 }
