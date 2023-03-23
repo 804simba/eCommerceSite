@@ -1981,7 +1981,7 @@
                                 <div class="product-o product-o--hover-on">
                                     <div class="product-o__wrap">
 
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail">
 
                                             <img class="aspect__img" src="images/product/electronic/product1.jpg" alt=""></a>
                                         <div class="product-o__action-wrap">
