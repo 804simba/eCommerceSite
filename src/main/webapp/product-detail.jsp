@@ -14,26 +14,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="images/favicon.png" rel="shortcut icon">
+    <link href="assets/images/favicon.png" rel="shortcut icon">
     <title>Ludus - Electronics, Apparel, Computers, Books, DVDs & more</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="assets/css/vendor.css">
 
     <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="assets/css/utility.css">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body class="config">
 <div class="preloader is-active">
     <div class="preloader__wrap">
 
-        <img class="preloader__img" src="images/preloader.png" alt=""></div>
+        <img class="preloader__img" src="assets/images/preloader.png" alt=""></div>
 </div>
 
 <!--====== Main App ======-->
@@ -51,9 +51,9 @@
 
                     <!--====== Main Logo ======-->
 
-                    <a class="main-logo" href="index.html">
+                    <a class="main-logo" href="index">
 
-                        <img src="images/logo/logo-1.png" alt=""></a>
+                        <img src="assets/images/logo/logo-1.png" alt=""></a>
                     <!--====== End - Main Logo ======-->
 
 
@@ -1270,7 +1270,7 @@
                                                 <div class="mini-product">
                                                     <div class="mini-product__image-wrapper">
 
-                                                        <a class="mini-product__link" href="product-detail.html">
+                                                        <a class="mini-product__link" href="product-detail">
 
                                                             <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>
                                                     <div class="mini-product__info-wrapper">
@@ -1298,7 +1298,7 @@
                                                 <div class="mini-product">
                                                     <div class="mini-product__image-wrapper">
 
-                                                        <a class="mini-product__link" href="product-detail.html">
+                                                        <a class="mini-product__link" href="product-detail">
 
                                                             <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>
                                                     <div class="mini-product__info-wrapper">
@@ -1309,7 +1309,7 @@
 
                                                         <span class="mini-product__name">
 
-                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
+                                                                <a href="product-detail">New Dress D Nice Elegant</a></span>
 
                                                         <span class="mini-product__quantity">1 x</span>
 
@@ -2645,13 +2645,13 @@
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
 <!--====== Vendor Js ======-->
-<script src="js/vendor.js"></script>
+<script src="assets/js/vendor.js"></script>
 
 <!--====== jQuery Shopnav plugin ======-->
-<script src="js/jquery.shopnav.js"></script>
+<script src="assets/js/jquery.shopnav.js"></script>
 
 <!--====== App ======-->
-<script src="js/app.js"></script>
+<script src="assets/js/app.js"></script>
 
 <!--====== Noscript ======-->
 <noscript>

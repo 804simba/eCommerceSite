@@ -1565,7 +1565,7 @@
                                         <div class="product-o product-o--hover-on product-o--radius">
                                             <div class="product-o__wrap">
 
-                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail">
 
                                                     <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
                                                 <div class="product-o__action-wrap">
@@ -1606,7 +1606,7 @@
                                         <div class="product-o product-o--hover-on product-o--radius">
                                             <div class="product-o__wrap">
 
-                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail">
 
                                                     <img class="aspect__img" src="images/product/electronic/product3.jpg" alt=""></a>
                                                 <div class="product-o__action-wrap">
@@ -1633,7 +1633,7 @@
 
                                             <span class="product-o__name">
 
-                                                    <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+                                                    <a href="product-detail">Yellow Wireless Headphone</a></span>
                                             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                                 <span class="product-o__review">(23)</span></div>

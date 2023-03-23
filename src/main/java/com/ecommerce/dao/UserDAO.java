@@ -47,12 +47,11 @@ public class UserDAO {
     public boolean confirmUserLoginCredentials(String email, String password) {
         final String LOGIN_USER = "SELECT * FROM users WHERE email = ? AND password = ?";
         boolean result = false;
-//        String hashedPassword = getPasswordFromDB(email);
         try {
             Connection conn = DBConnection.getInstance().getConnection();
             PreparedStatement st = conn.prepareStatement(LOGIN_USER);
             st.setString(1, email);
-            st.setString(2, PasswordValidation.hashPassword(password));
+            st.setString(2, password);
             ResultSet rs = st.executeQuery();
 
             if (rs.next()) {
@@ -63,25 +62,8 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             System.out.println("Incorrect login details: " + e.getMessage());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error hashing password "+e.getMessage());
         }
         return result;
-    }
-    private String getPasswordFromDB(String email) {
-        final String USER_PASSWORD = "SELECT password FROM Users WHERE email = ?";
-        String password = null;
-        try {
-            PreparedStatement st = connection.prepareStatement(USER_PASSWORD);
-            st.setString(1, email);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                password = rs.getString("password");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving password: " + e.getMessage());
-        }
-        return password;
     }
     public User getUserByID(int id) {
         User user = null;

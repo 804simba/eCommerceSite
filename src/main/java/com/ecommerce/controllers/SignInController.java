@@ -31,6 +31,7 @@ public class SignInController extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else {
                 System.out.println("Login failed");
+                System.out.println("password: " + password);
                 String alert = "<div class=\"alert alert-danger wrap-input100\">\n" +
                         "                        <p style=\"font-family: Ubuntu-Bold; font-size: 18px; margin: 0.25em 0; text-align: center\">\n" +
                         "                            Wrong username or password!\n" +
