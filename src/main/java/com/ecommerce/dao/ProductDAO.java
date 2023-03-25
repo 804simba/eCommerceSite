@@ -41,7 +41,7 @@ public class ProductDAO implements IProductDAO {
     public List<Product> getAllProducts() throws ProductNotFoundException {
         List<Product> products = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM products";
+            String sql = "SELECT * FROM Products";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

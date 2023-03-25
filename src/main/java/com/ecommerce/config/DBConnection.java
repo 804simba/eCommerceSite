@@ -8,13 +8,13 @@ import java.sql.SQLException;
 public class DBConnection {
     private static DBConnection instance;
     private Connection connection;
-    private final String url = "jdbc:mysql://localhost:3306/ecommerceDB?allowPublicKeyRetrieval=true&useSSL=false";
+    private final String url = "jdbc:mysql://localhost:3306/eCommerceDB?allowPublicKeyRetrieval=true&useSSL=false";
     private final String username = "root";
-    private final String password = "root";
+    private final String password = "pablodon97";
 
     private DBConnection() throws SQLException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException ex) {
             System.out.println("Database Connection Creation Failed : " + ex.getMessage());

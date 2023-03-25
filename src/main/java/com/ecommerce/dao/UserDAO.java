@@ -27,7 +27,7 @@ public class UserDAO implements IUserDAO {
     }
     @Override
     public boolean registerUser(User user) {
-        final String REGISTER_USER = "INSERT INTO users (firstName, lastName, email, password) " +
+        final String REGISTER_USER = "INSERT INTO Users (firstName, lastName, email, password) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(REGISTER_USER)) {
@@ -44,7 +44,7 @@ public class UserDAO implements IUserDAO {
     }
     @Override
     public boolean confirmUserLoginCredentials(String email, String password) {
-        final String LOGIN_USER = "SELECT * FROM users WHERE email = ? AND password = ?";
+        final String LOGIN_USER = "SELECT * FROM Users WHERE email = ? AND password = ?";
         boolean result = false;
         try {
             Connection conn = DBConnection.getInstance().getConnection();
@@ -67,7 +67,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public User getUserByID(int id) throws UserNotFoundException {
         User user = null;
-        final String GET_USERS_BY_ID = "SELECT * FROM users WHERE userID = ?";
+        final String GET_USERS_BY_ID = "SELECT * FROM Users WHERE userID = ?";
         try {
             stmt = connection.prepareStatement(GET_USERS_BY_ID);
             stmt.setInt(1, id);
